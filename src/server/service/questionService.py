@@ -17,7 +17,7 @@ class QuestionService:
 
     @staticmethod
     def setJsonDocumentByQuestion(question:Question) -> Dict:
-        # Cria um documento baseado no Animal
+        # Create a JSON document based on Question
         documentoAnimal = {
             "_id": question.getId(),
             "statement": question.getStatement(),
