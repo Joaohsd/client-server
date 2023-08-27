@@ -6,6 +6,7 @@ from typing import List
 
 from entity.question import Question
 from db.questionDAO import QuestionDAO
+from db.database import Database
 
 def connection_handler(client_socket, client_address):
     # Using random to get which questions will be solved by the user
@@ -26,6 +27,10 @@ def getQuestionsFromDatabase(sorted_questions) -> List[Question]:
 
 SERVER_PORT = 12345
 SERVER_IP = 'localhost'
+
+# Reset database and create new one with the corresponding collection 'Questions'
+db = Database('C115-Trabalho1', 'Questions')
+db.resetDatabase()
 
 # Create the server socket
 server_socket = socket(AF_INET, SOCK_STREAM)
