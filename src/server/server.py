@@ -14,8 +14,15 @@ def connection_handler(client_socket, client_address):
     sorted_questions = random.sample(range(1,11), 3)
     # Connect to the Database and get questions
     questions_json_str = getQuestionsFromDatabase(sorted_questions)
+    # Send questions to the client
+    answered_questions, questions_json = sendQuestions(questions_json_str)
+    # Send feedback to the client
+    sendFeedback(answered_questions, questions_json)
+    
+def sendQuestions(questions_json_str):
     answered_questions = []
     questions_json = []
+    
     for question in questions_json_str:
         client_socket.send(question.encode())
         answer = client_socket.recv(1024)
@@ -23,17 +30,17 @@ def connection_handler(client_socket, client_address):
         questions_json.append(json.loads(question))
 
     client_socket.send('FIM'.encode())
+    
+    return answered_questions, questions_json
 
+def sendFeedback(answered_questions, questions_json):
     for index, question in enumerate(questions_json):
         if question['answer'] == answered_questions[index]:
             text = 'Você acertou a questão ' + str(index+1) + '\n'
-            client_socket.send(text.encode())
-            print(client_socket.recv(1024).decode())
         else:
             text = 'Você errou a questão ' + str(index+1) + ' a resposta correta é ' + str(question['answer'] + 1) + '. ' + question['options'][question['answer']] + '\n'
-            client_socket.send(text.encode())
-            print(client_socket.recv(1024).decode())
-    
+        client_socket.send(text.encode())
+        client_socket.recv(1024)
     client_socket.send('FIM'.encode())
 
 def getQuestionsFromDatabase(sorted_questions) -> List[Question]:

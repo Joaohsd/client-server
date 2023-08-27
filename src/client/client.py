@@ -9,7 +9,7 @@ client_socket = socket(AF_INET, SOCK_STREAM)
 
 # Connect to the server (Three-way-handshake)
 client_socket.connect((SERVER_IP,SERVER_PORT))
-
+# Receiving questions
 while True:
     question = client_socket.recv(1024).decode()
     if question == 'FIM':
@@ -20,7 +20,7 @@ while True:
         print(str(index+1) + '. '+ option)
     answer = input('')
     client_socket.send(answer.encode())
-    
+# Receiving Feedback
 while True:
     text = client_socket.recv(1024).decode()
     client_socket.send('OK'.encode())
