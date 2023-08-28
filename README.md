@@ -37,7 +37,7 @@ make runServer
 
 *   Running Client
 ```shell
-make runServer
+make runClient
 ```
 
 If you do not have **make** installed, you can use (**for Linux environment**):
