@@ -6,6 +6,7 @@ This repository is used to present the development of first work in "C115 - Conc
 ---
 *   Python 3.8+
 *   Make
+*   Docker
 
 ## **Docker**
 ---
