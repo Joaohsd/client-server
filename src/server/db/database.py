@@ -1,7 +1,7 @@
 import pymongo
 import json
 
-with open('./db/samples.json',encoding='utf8') as f:
+with open('./src/server/db/samples.json',encoding='utf8') as f:
     dataset = json.load(f)
 
 class Database:

@@ -1,14 +1,16 @@
+#!/bin/bash
+
 # Installing python module in order to create new python environment
 pip install virtualenv
 
 # Creating new environment based on argument passed to this script
-python3 -m virtualenv env
+python3 -m virtualenv venv
 
 # Activate the Virtual Environment
-source env/bin/activate
+source venv/bin/activate
 
 # Install required dependencies for this Environment
-pip install -r scripts/packages.txt
+pip install -r setup/packages.txt
 
 # Saving info about versions of installed packages
-pip freeze > scripts/requirements.txt
+pip freeze > setup/requirements.txt

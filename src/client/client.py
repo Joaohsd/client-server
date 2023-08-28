@@ -18,8 +18,8 @@ while True:
     print(question['statement'])
     for index, option in enumerate(question['options']):
         print(str(index+1) + '. '+ option)
-    answer = input('')
-    client_socket.send(answer.encode())
+    answer = int(input('Resposta:'))
+    client_socket.send(str(answer-1).encode())
 # Receiving Feedback
 while True:
     text = client_socket.recv(1024).decode()
@@ -27,3 +27,5 @@ while True:
     if text == 'FIM':
         break
     print(text)
+
+client_socket.close()
