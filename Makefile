@@ -1,6 +1,13 @@
 start:
-	chmod +x scripts/start.sh
-	./scripts/start.sh
+	chmod +x setup/start.sh
+	./setup/start.sh
 
-run:
-	python3 src/main.py
+runServer:
+	chmod +x venv/bin/activate
+	./venv/bin/activate
+	python3 src/server/server.py
+
+runClient:
+	chmod +x venv/bin/activate
+	./venv/bin/activate
+	python3 src/client/client.py

@@ -5,10 +5,14 @@ services:
 
   mongo:
     image: mongo
+    container_name: mongodb
     restart: always
+    ports:
+      - 27017:27017
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
+      MONGO_INITDB_DATABASE: C115-Trabalho1
 
   mongo-express:
     image: mongo-express
