@@ -18,11 +18,11 @@ class QuestionService:
     @staticmethod
     def setJsonDocumentByQuestion(question:Question) -> Dict:
         # Create a JSON document based on Question
-        documentoAnimal = {
+        documentoQuestion = {
             "_id": question.getId(),
             "statement": question.getStatement(),
             "options": question.getOptions(),
             "answer": question.getAnswer()
         }
-       
-        return documentoAnimal
+        
+        return documentoQuestion
